@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace KickAssSubtitles\OpenSubtitles;
 
 require('ClientException.php');
+require('ApiResponse.php');
 
 class Client
 {

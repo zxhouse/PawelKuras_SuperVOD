@@ -33,6 +33,10 @@
     box-shadow: none;
 }
 
+.break-word{
+	word-break: break-word;
+}
+
 .lds-circle {
   display: inline-block;
   transform: translateZ(1px);
@@ -216,15 +220,7 @@
 				<div class="col-lg-2 text-center"></div>
 			</div>
 			
-			<div class="row">
-				<div class="col-md-4 col-lg-4 text-center"></div>
-				<div class="col-md-4 col-lg-4 text-center">
-					<center><button type="button" class="btn btn-info">Upload your own file with subtitles</button></center>
-					<br>
-					<h3><b>OR<b/></h3>
-				</div>
-				<div class="col-md-4 col-lg-4 text-center"></div>
-			</div>
+			
 			
 			<div class="row">
 				<div class="col-md-2 col-lg-2 text-center"></div>
@@ -233,7 +229,7 @@
 					<div class="panel panel-default">
 						<div class="panel-body">
 				
-							<h3>Search subtitles on OpenSubtitles database:</h3>
+							<h3>Search and download subtitles on OpenSubtitles database:</h3>
 							<br>
 							<p>Language:</p>
 							<form>
@@ -269,14 +265,49 @@
 							</form>
 		
 							<br>
-							<button type="button" class="btn btn-primary" id="sub_search_button" onClick="SearchSubtitlesButtonClick()">Search for subtitles</button>
-							<div class="lds-circle" style="display:none" id="loading_circle"><div></div></div>
-		
+							<button type="button" class="btn btn-primary"  id="sub_search_button" onClick="SearchSubtitlesButtonClick()">Search for subtitles</button>
+								<div class="lds-circle" style="display:none" id="loading_circle"><div></div></div>
+								
+									<div class="clone-list">
+										<div class="row" id="listofsubtitles" style="display:none">
+								
+											<div class="col-md-6 col-lg-6 text-center" id="NameOfSubtitle" >Name of Subtitle</div>
+											<div class="col-md-2 col-lg-1 text-center" id="FormatOfSubtitle" >Format</div>
+											<div class="col-md-2 col-lg-2 text-center" id="DurationOfSubtitle" >Length</div>
+											<div class="col-md-2 col-lg-1 text-center" id="FPSOfSubtitle" >FPS</div>
+											
+											<div class="col-md-2 col-lg-2 text-center" id="DownloadZIP" >Download as ZIP</div>
+								
+										</div>
+										
+										<div class="row" id="listofsubtitles-clone" style="display:none;">
+								
+											<div class="col-md-6 col-lg-6 text-center NameOfSubtitle break-word"></div>
+											<div class="col-md-2 col-lg-1 text-center FormatOfSubtitle"></div>
+											<div class="col-md-2 col-lg-2 text-center DurationOfSubtitle"></div>
+											<div class="col-md-2 col-lg-1 text-center FPSOfSubtitle"></div>
+											<div class="col-md-2 col-lg-2 text-center DownloadZIP break-word"></div>
+								
+										</div>
+									</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-2 col-lg-2 text-center"></div>
 			</div>
+			
+			
+			<div class="row">
+				<div class="col-md-4 col-lg-4 text-center"></div>
+				<div class="col-md-4 col-lg-4 text-center">
+					<center><input type="file" name="file"></center>
+					<br>
+					<center><button type="button" class="btn btn-info">Upload subtitle file</button></center>
+				</div>
+				<div class="col-md-4 col-lg-4 text-center"></div>
+			</div>
+			
+			
 			
 			<br><br><br>
 			
@@ -366,6 +397,9 @@
     
 	<script>
 	
+
+
+	
 	function ButtonNoFunction(){
 		
 		$("#GoogleApiResults").remove();
@@ -437,23 +471,46 @@
 	
 	var selected_language = $("input[name=language_select]:checked").val();
 	
+	
 
+	var clone = $('#listofsubtitles-clone').clone();
+	clone.removeAttr('style');
+	$('#listofsubtitles-clone').remove();
+	
 	$.ajax({
 	type: "POST",
 	url: "sub_query.php",
 	data: { token_id: "<?php echo $_GET["token"]; ?>", language: selected_language },
 	success:function(data)
 	{
-	alert(data);// data is the return value from input.php
-	}
-	});
-
-	;
+		$("#loading_circle").remove();
 		
+		var json = JSON.parse(data);
+		
+		$('#listofsubtitles').removeAttr('style');
+		
+		console.log(json.data);
+		
+		$.each(json.data, function (key, val)
+		{
+			var el = clone.clone();
+			
+			el.find('.NameOfSubtitle').html(val.SubFileName);
+			el.find('.FormatOfSubtitle').html(val.SubFormat);
+			el.find('.DurationOfSubtitle').html(val.SubLastTS);
+			el.find('.FPSOfSubtitle').html(val.MovieFPS);
+			el.find('.DownloadZIP').html('<a target=\"_blank\" href=\"'+ val.ZipDownloadLink + '\">' + 'Link' + '</a>');
+			
+			$('.clone-list').append(el);
+		});
+		
+		document.getElementById("listofsubtitles").style.display = "block";
+	}
+	
+	});
+	
 	}
 
-	
-	
 	</script>
 
 </body>

@@ -24,7 +24,7 @@ $response = $client->searchSubtitles([
     ]
 ]);
 
-echo($response->toArray());
+echo json_encode($response->toArray());
 
 
 function OpenSubtitlesHash($file)
