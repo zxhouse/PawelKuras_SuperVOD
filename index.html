@@ -36,7 +36,7 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-lg-12 text-center">
+            <div class="col-md-12 col-lg-12 text-center">
                 <center><img src = "img/logo.png"></center>
                 <p class="lead">Add subtitles from OpenSubtitles or your own file to your favourite movies!</p>
                 <ul class="list-unstyled">
@@ -46,30 +46,27 @@
             </div>
         </div>
         <!-- /.row -->
-<br>
-<div class="row">
-<div class="col-lg-3 text-center"></div>
-<div class="col-lg-6 text-center">
+		<br>
+		<div class="row">
+			<div class="col-md-2 col-lg-2 text-center"></div>
+			<div class="col-md-8 col-lg-8 text-center">
 
-<div class="container">
- 
-          <div class="row">
-            <div class="col-lg-12">
-               <form class="well" action="upload.php" method="post" enctype="multipart/form-data">
-                  <div class="form-group">
-                    <label for="file">Select a file to upload</label>
-                    <input type="file" name="file">
-                    <p class="help-block">Max file size is 2GB</p>
-                  </div>
-                  <input type="submit" class="btn btn-lg btn-primary" value="Upload">
-                </form>
-            </div>
-          </div>
-    </div> <!-- /container -->
-	</div>	
-	<div class="col-lg-3 text-center"></div>
+				<div class="row">
+					<div class="col-md-12 col-lg-12">
+						<form class="well" action="upload.php" method="post" enctype="multipart/form-data">
+							<div class="form-group">
+								<label for="file">Select a file to upload</label>
+								<input type="file" name="file">
+								<p class="help-block">Max file size is 2GB</p>
+							</div>
+							<input type="submit" class="btn btn-lg btn-primary" value="Upload">
+						</form>
+					</div>
+				</div>
+			</div> 
+		</div>	
+		
 	</div>
-    </div>
     <!-- /.container -->
 
     <!-- jQuery Version 1.11.1 -->
@@ -77,15 +74,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-	
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
   
-  <script>
-  
-  $('.file_upload').file_upload();
-  
-  </script>
 
 </body>
 

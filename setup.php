@@ -82,13 +82,13 @@
     <!-- Page Content -->
     <div class="container">
 
-        
-            <div class="col-lg-12 text-center">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 text-center">
                 <center><img src = "img/logo.png"></center>
                 <p class="lead">Add subtitles from OpenSubtitles or your own file to your favourite movies!</p>
             </div>
-			
-			<br>
+		</div>
+		<br>
 			
 				<?php
 					
@@ -132,26 +132,30 @@
 					
 
 						echo("<div id=\"GoogleApiResults\" class=\"row\">");
-						echo("<div class=\"col-lg-2 text-center\"></div>");
-						echo("<div class=\"col-lg-8 text-center\">");
-			
-						echo("<div class=\"panel panel-default\">");
-						echo("<div class=\"panel-body\">");
+							echo("<div class=\"col-md-2 col-lg-2 text-center\"></div>");
+							echo("<div class=\"col-md-8 col-lg-8 text-center\">");
+								echo("<div class=\"panel panel-default\">");
+									echo("<div class=\"panel-body\">");
 				
-						echo("<b>Is movie title which you uploaded:</b>");
-						echo("<h4><b>");
-						echo $result;
-						echo("</h4></b>");
-						echo("<div class=\"col-lg-4 text-center\"></div>");
-						echo("<div class=\"col-lg-2 text-center\">");
+										echo("<b>Is movie title which you uploaded:</b>");
+										echo("<h4><b>");
+										echo $result;
+										echo("</b></h4>");
+										echo("<div class=\"row\">");
+											echo("<div class=\"col-md-4 col-lg-4 text-center\"></div>");
+											echo("<div class=\"col-md-2 col-lg-2 text-center\">");
+												echo("<center><button type=\"button\" class=\"btn btn-success\" onclick=\"ButtonYesFunction()\">Yes</button></center>");
+											echo("</div>");
 				
-						echo("<center><button type=\"button\" class=\"btn btn-success\" onclick=\"ButtonYesFunction()\">Yes</button></center>");
+											echo("<div class=\"col-md-2 col-lg-2 text-center\">");
+												echo("<center><button type=\"button\" class=\"btn btn-danger\" onclick=\"ButtonNoFunction()\">No</button></center>");
+											echo("</div>");
+										echo("</div>");
+									echo("</div>");
+								echo("</div>");
+							echo("</div>");
+							echo("<div class=\"col-md-2 col-lg-2 text-center\"></div>");
 						echo("</div>");
-			
-						echo("<div class=\"col-lg-2 text-center\">");
-						echo("<center><button type=\"button\" class=\"btn btn-danger\" onclick=\"ButtonNoFunction()\">No</button></center>");
-						echo("</div></div></div></div>");
-						echo("<div class=\"col-lg-2 text-center\"></div></div>");
 				
 				}
 				
@@ -164,201 +168,190 @@
 			
 			
 			<div id="MovieInfoPanel" style="display: none;" class="row">
-			<div class="col-lg-2 text-center"></div>
-			<div class="col-lg-8 text-center">
-			
-			<div class="panel panel-default">
-				<div class="panel-body">
+				<div class="col-md-2 col-lg-2 text-center"></div>
+				<div class="col-md-8 col-lg-8 text-center">
 				
-				<div class="row">
-				<div class="col-lg-4 text-center">
-				
-				<img id="poster-img" src="folder.jpg"></img>
-				
-				</div>
-				
-				<div class="col-lg-1 text-center"></div>
-				
-				<div class="col-lg-7 text-left">
-				
-				<h1 id="Title">Title</h1>
-				<h4 id="Year">Year<h4>
-				
-				<br>
-				
-				<div id="Plot">BoJack Horseman was the star of the hit TV show "Horsin' Around" in the '90s, now he's washed up, living in Hollywood, complaining about everything, and wearing colorful sweaters.</div>
-				
-				
-				</div>
-				</div>
-				<div class="row text-center">
-				<br><br>
-				<h4 id="Released">22 Dec 2012</h4>
+					<div class="panel panel-default">
+						<div class="panel-body">
 					
-				<h4 id="Genre">Comedy</h4>
-				<h4 id="Writer">Writer</h4>
-				<h4 id="Actors">Actor</h4>
-				<h4 id="Director">Director</h4>
-				<h4 id="Language">Language</h4>
-				<h4 id="imdbRating">imdbRating</h4>
-				
-				<br>
-				
-				<h5><i>Data came from OMDB.com database</i></h5>
-				
-				</div>
+							<div class="row">
+								<div class="col-md-4 col-lg-4 text-center">
+					
+									<img id="poster-img" src="folder.jpg"></img>
+					
+								</div>
+								<div class="col-md-1 col-lg-1 text-center"></div>
+								<div class="col-md-7 col-lg-7 text-left">
+					
+									<h1 id="Title">Title</h1>
+									<h4 id="Year">Year<h4>
+					
+									<br>
+					
+									<div id="Plot">BoJack Horseman was the star of the hit TV show "Horsin' Around" in the '90s, now he's washed up, living in Hollywood, complaining about everything, and wearing colorful sweaters.</div>
+					
+					
+								</div>
+							</div>
+							<div class="row text-center">
+								<br><br>
+								<h4 id="Released">22 Dec 2012</h4>
+						
+								<h4 id="Genre">Comedy</h4>
+								<h4 id="Writer">Writer</h4>
+								<h4 id="Actors">Actor</h4>
+								<h4 id="Director">Director</h4>
+								<h4 id="Language">Language</h4>
+								<h4 id="imdbRating">imdbRating</h4>
+					
+								<br>
+					
+								<h5><i>Data came from OMDB.com database</i></h5>
+					
+							</div>
 
-				
+						</div>
+					</div>
 				</div>
-			</div>
-			
-			</div>
-			
-			<div class="col-lg-2 text-center"></div>
+				<div class="col-lg-2 text-center"></div>
 			</div>
 			
 			<div class="row">
-			<div class="col-lg-4 text-center"></div>
-			<div class="col-lg-4 text-center">
-				<center><button type="button" class="btn btn-info">Upload your own file with subtitles</button></center>
-				<br>
-				<h3><b>OR<b/></h3>
-			</div>
-			<div class="col-lg-4 text-center"></div>
+				<div class="col-md-4 col-lg-4 text-center"></div>
+				<div class="col-md-4 col-lg-4 text-center">
+					<center><button type="button" class="btn btn-info">Upload your own file with subtitles</button></center>
+					<br>
+					<h3><b>OR<b/></h3>
+				</div>
+				<div class="col-md-4 col-lg-4 text-center"></div>
 			</div>
 			
 			<div class="row">
-			<div class="col-lg-2 text-center"></div>
-			<div class="col-lg-8 text-center">
-			
-			<br>
-			
-			<div class="panel panel-default">
-				<div class="panel-body">
+				<div class="col-md-2 col-lg-2 text-center"></div>
+				<div class="col-md-8 col-lg-8 text-center">
+					<br>
+					<div class="panel panel-default">
+						<div class="panel-body">
 				
-
-		<h3>Search subtitles on OpenSubtitles database:</h3>
-				<br>
-				<p>Language:</p>
-				<form>
-				<ul class="f32">
-			<input type="radio" name="language_select" value="eng" checked><li class="flag gb"></li>&nbsp;
-			<input type="radio" name="language_select" value="spa"><li class="flag es"></li>&nbsp;
-			<input type="radio" name="language_select" value="pol"><li class="flag pl"></li>&nbsp;
-			<input type="radio" name="language_select" value="jpn"><li class="flag jp"></li>&nbsp;
-			<input type="radio" name="language_select" value="fra"><li class="flag fr"></li>&nbsp;
-			<input type="radio" name="language_select" value="ger"><li class="flag de"></li>&nbsp;
-			<input type="radio" name="language_select" value="ita"><li class="flag it"></li>&nbsp;
-			<input type="radio" name="language_select" value="por"><li class="flag pt"></li>&nbsp;
-			<input type="radio" name="language_select" value="swe"><li class="flag se"></li>&nbsp;
-			<input type="radio" name="language_select" value="nor"><li class="flag no"></li>&nbsp;
-			<input type="radio" name="language_select" value="fin"><li class="flag fi"></li>&nbsp;
-			<input type="radio" name="language_select" value="ukr"><li class="flag ua"></li>&nbsp;
-			<input type="radio" name="language_select" value="est"><li class="flag ee"></li>&nbsp;
-			<input type="radio" name="language_select" value="rus"><li class="flag ru"></li>&nbsp;
-			<input type="radio" name="language_select" value="cze"><li class="flag cz"></li>&nbsp;
-			<input type="radio" name="language_select" value="slo"><li class="flag sk"></li>&nbsp;
-			<input type="radio" name="language_select" value="chi"><li class="flag cn"></li>&nbsp;
-			<input type="radio" name="language_select" value="kor"><li class="flag kr"></li>&nbsp;
-			<input type="radio" name="language_select" value="hrv"><li class="flag hr"></li>&nbsp;
-			<input type="radio" name="language_select" value="hun"><li class="flag hu"></li>&nbsp;
-			<input type="radio" name="language_select" value="rom"><li class="flag ro"></li>&nbsp;
-			<input type="radio" name="language_select" value="lit"><li class="flag lt"></li>&nbsp;
-			<input type="radio" name="language_select" value="lav"><li class="flag lv"></li>&nbsp;
-			<input type="radio" name="language_select" value="kaz"><li class="flag kz"></li>&nbsp;
-			<input type="radio" name="language_select" value="dut"><li class="flag nl"></li>&nbsp;
-			<input type="radio" name="language_select" value="gre"><li class="flag gr"></li>&nbsp;
-  
-		</ul>
-		</form>
+							<h3>Search subtitles on OpenSubtitles database:</h3>
+							<br>
+							<p>Language:</p>
+							<form>
+								<ul class="f32">
+									<input type="radio" name="language_select" value="eng" checked><li class="flag gb"></li>&nbsp;
+									<input type="radio" name="language_select" value="spa"><li class="flag es"></li>&nbsp;
+									<input type="radio" name="language_select" value="pol"><li class="flag pl"></li>&nbsp;
+									<input type="radio" name="language_select" value="jpn"><li class="flag jp"></li>&nbsp;
+									<input type="radio" name="language_select" value="fra"><li class="flag fr"></li>&nbsp;
+									<input type="radio" name="language_select" value="ger"><li class="flag de"></li>&nbsp;
+									<input type="radio" name="language_select" value="ita"><li class="flag it"></li>&nbsp;
+									<input type="radio" name="language_select" value="por"><li class="flag pt"></li>&nbsp;
+									<input type="radio" name="language_select" value="swe"><li class="flag se"></li>&nbsp;
+									<input type="radio" name="language_select" value="nor"><li class="flag no"></li>&nbsp;
+									<input type="radio" name="language_select" value="fin"><li class="flag fi"></li>&nbsp;
+									<input type="radio" name="language_select" value="ukr"><li class="flag ua"></li>&nbsp;
+									<input type="radio" name="language_select" value="est"><li class="flag ee"></li>&nbsp;
+									<input type="radio" name="language_select" value="rus"><li class="flag ru"></li>&nbsp;
+									<input type="radio" name="language_select" value="cze"><li class="flag cz"></li>&nbsp;
+									<input type="radio" name="language_select" value="slo"><li class="flag sk"></li>&nbsp;
+									<input type="radio" name="language_select" value="chi"><li class="flag cn"></li>&nbsp;
+									<input type="radio" name="language_select" value="kor"><li class="flag kr"></li>&nbsp;
+									<input type="radio" name="language_select" value="hrv"><li class="flag hr"></li>&nbsp;
+									<input type="radio" name="language_select" value="hun"><li class="flag hu"></li>&nbsp;
+									<input type="radio" name="language_select" value="rom"><li class="flag ro"></li>&nbsp;
+									<input type="radio" name="language_select" value="lit"><li class="flag lt"></li>&nbsp;
+									<input type="radio" name="language_select" value="lav"><li class="flag lv"></li>&nbsp;
+									<input type="radio" name="language_select" value="kaz"><li class="flag kz"></li>&nbsp;
+									<input type="radio" name="language_select" value="dut"><li class="flag nl"></li>&nbsp;
+									<input type="radio" name="language_select" value="gre"><li class="flag gr"></li>&nbsp;
+						  
+								</ul>
+							</form>
 		
-		<br>
-			<button type="button" class="btn btn-primary" id="sub_search_button" onClick="SearchSubtitlesButtonClick()">Search for subtitles</button>
-			<div class="lds-circle" style="display:none" id="loading_circle"><div></div></div>
+							<br>
+							<button type="button" class="btn btn-primary" id="sub_search_button" onClick="SearchSubtitlesButtonClick()">Search for subtitles</button>
+							<div class="lds-circle" style="display:none" id="loading_circle"><div></div></div>
 		
-				
+						</div>
+					</div>
 				</div>
-			</div>
-			
-			</div>
-			
-			<div class="col-lg-2 text-center"></div>
+				<div class="col-md-2 col-lg-2 text-center"></div>
 			</div>
 			
 			<br><br><br>
 			
 			<div class="row">
-			<div class="col-lg-2 text-center"></div>
-			<div class="col-lg-8 text-center">
+				<div class="col-md-2 col-lg-2 text-center"></div>
+				<div class="col-md-8 col-lg-8 text-center">
 			
-			<div class="panel panel-default">
-				<div class="panel-body">
-				
-				<h4>Options</h4>
-				<br>
-				<div class="row">
-				<div class="col-lg-4 text-right">
-				Position of subtitles:
-				</div>
-				
-				<div class="col-lg-8 text-left">
-				<select class="form-control" id="exampleFormControlSelect1">
-					<option>Above video</option>
-					<option>Under video</option>
-					<option>In center of video</option>
-				</select>
-				</div>
-				
-				</div>
-				<br>
-				<div class="row">
-				<div class="col-lg-4 text-right">
-				Charset:
-				</div>
-				
-				<div class="col-lg-8 text-left">
-				<select class="form-control" id="exampleFormControlSelect1">
-					<option>Unicode (UTF-8)</option>
-					<option>ISO 8859-1 (Central Europe</option>
-					<option>In center of video</option>
-				</select>
-				</div>
-				
-				</div>
-				
-				<br>
-				<div class="row">
-				<div class="col-lg-4 text-right">
-				Font:
-				</div>
-				
-				<div class="col-lg-8 text-left">
-				<select class="form-control" id="exampleFormControlSelect1">
-					<option>Arial</option>
-					<option>Tahoma</option>
-					<option>Times New Roman</option>
-				</select>
-				</div>
-				
-				</div>
-				
-				</div>
-			</div>
+					<div class="panel panel-default">
+						<div class="panel-body">
+					
+							<h4>Options</h4>
+							<br>
+							<div class="row">
+								<div class="col-md-4 col-lg-4 text-right">
+									Position of subtitles:
+								</div>
+								<div class="col-md-8 col-lg-8 text-left">
+									<select class="form-control" id="exampleFormControlSelect1">
+										<option>Above video</option>
+										<option>Under video</option>
+										<option>In center of video</option>
+									</select>
+								</div>
+					
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-md-4 col-lg-4 text-right">
+									Charset:
+								</div>
+					
+								<div class="col-md-8 col-lg-8 text-left">
+									<select class="form-control" id="exampleFormControlSelect1">
+										<option>Unicode (UTF-8)</option>
+										<option>ISO 8859-1 (Central Europe</option>
+										<option>In center of video</option>
+									</select>
+								</div>
+					
+							</div>
+					
+							<br>
+							<div class="row">
+								<div class="col-md-4 col-lg-4 text-right">
+								Font:
+								</div>
+					
+								<div class="col-md-8 col-lg-8 text-left">
+									<select class="form-control" id="exampleFormControlSelect1">
+										<option>Arial</option>
+										<option>Tahoma</option>
+										<option>Times New Roman</option>
+									</select>
+								</div>
+					
+							</div>
+					
+						</div>
+					</div>
 			
-			</div>
-			
-			<div class="col-lg-2 text-center"></div>
+				</div>
+				<div class="col-md-2 col-lg-2 text-center"></div>
 			</div>
 			
         
 		
-		<div class="row">
-		<center><button type="button" class="btn btn-primary">Add subtitles to movie!</button>&nbsp;&nbsp;<button type="button" class="btn btn-info">Preview video!</button></center>
-		
-		<br><br>
-		<center>2018 Politechnika Rzeszowska</center>
-		<br>
-		</div>
+			<div class="row">
+				<div class="col-md-12 col-lg-12 text-center">
+					<center><button type="button" class="btn btn-primary">Add subtitles to movie!</button>&nbsp;&nbsp;<button type="button" class="btn btn-info">Preview video!</button></center>
+			
+					<br><br>
+					<center>2018 Politechnika Rzeszowska</center>
+					<br>
+				</div>
+			</div>
         <!-- /.row -->
 		
     </div>
@@ -439,21 +432,21 @@
 	
 	function SearchSubtitlesButtonClick() {
 		
-	//$("#sub_search_button").remove();
-	//document.getElementById("loading_circle").style.display = "block";
+	$("#sub_search_button").remove();
+	document.getElementById("loading_circle").style.display = "block";
 	
-	//var selected_language = $("input[name=language_select]:checked").val();
+	var selected_language = $("input[name=language_select]:checked").val();
 	
 
-	//	$.ajax({
-	//	type: "POST",
-	//	url: "sub_query.php",
-	//	data: { token_id: "<?php echo $_GET["token"]; ?>", language: selected_language },
-	///	success:function(data)
-	//		{
-	//		alert('data');// data is the return value from input.php
-	//		}
-	//		});
+	$.ajax({
+	type: "POST",
+	url: "sub_query.php",
+	data: { token_id: "<?php echo $_GET["token"]; ?>", language: selected_language },
+	success:function(data)
+	{
+	alert(data);// data is the return value from input.php
+	}
+	});
 
 	;
 		
