@@ -300,9 +300,9 @@
 			<div class="row">
 				<div class="col-md-4 col-lg-4 text-center"></div>
 				<div class="col-md-4 col-lg-4 text-center">
-					<center><input type="file" name="file"></center>
+					<center><input type="file" id="file"></center>
 					<br>
-					<center><button type="button" class="btn btn-info">Upload subtitle file</button></center>
+					<center><button type="button" class="btn btn-info" onClick="UploadSubtitles()">Upload subtitle file</button></center>
 				</div>
 				<div class="col-md-4 col-lg-4 text-center"></div>
 			</div>
@@ -376,14 +376,53 @@
 		
 			<div class="row">
 				<div class="col-md-12 col-lg-12 text-center">
-					<center><button type="button" class="btn btn-primary">Add subtitles to movie!</button>&nbsp;&nbsp;<button type="button" class="btn btn-info">Preview video!</button></center>
+					<center><button type="button" class="btn btn-primary"  onClick="AddSubtitlesClicked()">Add subtitles to movie!</button>
+					&nbsp;&nbsp;<button type="button" class="btn btn-info" onClick="PreviewClicked()">Preview video!</button></center>
 			
 					<br><br>
 					<center>2018 Politechnika Rzeszowska</center>
+					
 					<br>
 				</div>
 			</div>
         <!-- /.row -->
+		
+<div class="modal fade" id="modal_overbusy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h4 class="modal-title" id="myModalLabel">Sorry, but our server is busy now...</h4>
+			</div>
+			<div class="modal-body">
+				<h3><b>It looks like our server is quite busy now.</b></h3>
+				</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-info" >Try again</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="modal_premiumusers" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h4 class="modal-title" id="myModalLabel">Not enough computing power for free users</h4>
+			</div>
+			<div class="modal-body">
+				<h3><b>But we have some space if you give us a little penny</b></h3>
+				<h2><b>Only $0,49 and your file will land on your hard drive!</b></h2>
+				<button id="pay-button"></button><br><br>
+				
+				</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-info" >Try again</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
 		
     </div>
     <!-- /.container -->
@@ -394,11 +433,31 @@
 
     <!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.js"></script>
+	
+	<script src="https://js.braintreegateway.com/web/3.25.0/js/client.min.js"></script>
+	<script src="https://www.paypalobjects.com/api/checkout.js" data-version-4></script>
+	<script src="https://js.braintreegateway.com/web/3.25.0/js/paypal-checkout.js"></script>
+	
     
+	
+	<?php
+	
+	require __DIR__ . '/vendor/autoload.php';
+
+$gateway = new Braintree_Gateway(array(
+    'accessToken' => 'access_token$sandbox$j84ryg5y82hjbthq$344b45d99dea7f34ac5859ea04d14585',
+));
+
+	$clientToken = $gateway->clientToken()->generate();
+
+   
+?>
+
+	
 	<script>
 	
 
-
+	var is_subtitle_file_uploaded = false;
 	
 	function ButtonNoFunction(){
 		
@@ -413,49 +472,23 @@
 		
 		console.log(omdbAPIquery);
 		
-		var title_string = "";
-		var year_string = "";
-		var genre_string = "";
-		var plot_string = "";
-		var writer_string = "";
-		var actors_string = "";
-		var director_string = "";
-		var language_string = "";
-		var imdbRating_string = "";
-		var released_string = "";
-		
-		
-		var poster_url = "";
-		
 		
 		$.getJSON( omdbAPIquery, function( data ) {
 		$.each( data, function( key, val ) {
 
-			if(key == "Title"){title_string = val;}
-			if(key == "Year"){year_string = val;}
-			if(key == "Genre"){genre_string = val;}
-			if(key == "Plot"){plot_string = val;}
-			if(key == "Writer"){writer_string = val;}
-			if(key == "Released"){released_string = val;}
-			if(key == "Actors"){actors_string = val;}
-			if(key == "Director"){director_string = val;}
-			if(key == "Language"){language_string = val;}
-			if(key == "imdbRating"){imdbRating_string = val;}
-			if(key == "Poster"){poster_url = val;}
+			if(key == "Title"){Title.innerHTML = val;}
+			if(key == "Year"){Year.innerHTML = val;}
+			if(key == "Genre"){Genre.innerHTML = "<b>Genre: </b>" + val;}
+			if(key == "Plot"){Plot.innerHTML = val;}
+			if(key == "Writer"){Writer.innerHTML = "<b>Writer: </b>" + val;}
+			if(key == "Released"){Released.innerHTML = "<b>Released: </b>" + val;}
+			if(key == "Actors"){Actors.innerHTML = "<b>Actors: </b>" + val;}
+			if(key == "Director"){Director.innerHTML = "<b>Director: </b>" + val;}
+			if(key == "Language"){Language.innerHTML = "<b>Language: </b>" + val;}
+			if(key == "imdbRating"){imdbRating.innerHTML = "<b>Rating on IMDb: </b>" + val;}
+			if(key == "Poster"){$("#poster-img").attr("src",val);}
 		});
 		
-		Title.innerHTML = title_string;
-		Year.innerHTML = year_string;
-		Genre.innerHTML = "<b>Genre: </b>" + genre_string;
-		Plot.innerHTML = plot_string;
-		Writer.innerHTML = "<b>Writer: </b>" + writer_string;
-		Actors.innerHTML = "<b>Actors: </b>" + actors_string;
-		Director.innerHTML = "<b>Director: </b>" + director_string;
-		Language.innerHTML = "<b>Language: </b>" + language_string;
-		imdbRating.innerHTML = "<b>Rating on IMDb: </b>" + imdbRating_string;
-		Released.innerHTML = "<b>Released: </b>" + released_string;
-		
-		$("#poster-img").attr("src",poster_url);
 		
 		$("#GoogleApiResults").remove();
 		document.getElementById("MovieInfoPanel").style.display = "block";
@@ -509,6 +542,105 @@
 	
 	});
 	
+	}
+	
+	
+	function UploadSubtitles(){
+		
+		var formData = new FormData();
+		formData.append('file', $('#file')[0].files[0]);
+		
+		var token_id = "<?php echo $_GET["token"]; ?>"
+		
+		
+		formData.append('token', token_id);
+		
+
+		$.ajax({
+       url : 'uploadsubtitles.php',
+       type : 'POST',
+       data : formData,
+       processData: false,  // tell jQuery not to process the data
+       contentType: false,  // tell jQuery not to set contentType
+       success : function(data) {
+           console.log(data);
+           alert(data);
+		   is_subtitle_file_uploaded = true;
+       }
+});
+		
+		
+	}
+	
+	
+var success_href = "renderfile.php?token=" + "<?php echo $_GET["token"]; ?>";
+
+var myToken = <?=json_encode($clientToken)?>;
+console.log(myToken);
+
+	paypal.Button.render({
+  braintree: braintree,
+  client: {
+    sandbox: myToken
+  },
+  env: 'sandbox', // or 'sandbox'
+  commit: false,
+   payment: function (data, actions) {
+    return actions.braintree.create({
+      flow: 'checkout', // Required
+      amount: 0.99, // Required
+      currency: 'USD', // Required
+      enableShippingAddress: true,
+      shippingAddressEditable: true,
+      shippingAddressOverride: {
+        recipientName: '',
+        line1: '',
+        line2: '',
+        city: '',
+        countryCode: '',
+        postalCode: '',
+        state: '',
+        phone: ''
+      }
+    });
+  },
+   onAuthorize: function(data, actions) {
+            console.log('authorize');
+            console.log(data);
+            console.log(actions);
+			window.location.href = success_href;
+           // return actions.payment.execute().then(function(res) {
+             //   console.log(res);
+              //  console.log('The payment was completed!');
+            //});
+        },
+	 onCancel: function(data) {
+            console.log('cancel');
+            console.log(data);
+            console.log('The payment was cancelled!');
+        },	
+  // Other configuration
+}, '#pay-button');
+	
+	
+	
+	function AddSubtitlesClicked() {
+	
+	if(is_subtitle_file_uploaded != true) { alert("Add file with subtitles first!"); }
+	else {
+	
+	
+	$.ajax({
+       url : 'CheckNumberOfInstances.php',
+       success : function(data) {
+           if(data < 15){ window.location.href = success_href; }
+		   else if(data < 30){ $("#modal_premiumusers").modal() }
+		   else if(data >=30){ $("#modal_overbusy").modal()	}
+		   
+	}});
+		
+	}	
+		
 	}
 
 	</script>

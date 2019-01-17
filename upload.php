@@ -18,7 +18,7 @@
                 case UPLOAD_ERR_OK:
                     $valid = true;
                     //validate file extensions
-                    if ( !in_array($ext, array('jpg','jpeg','png','gif','mp4')) ) {
+                    if ( !in_array($ext, array('jpg','m4v','avi','mkv','mp4','webm','flv','ogg','wmv')) ) {
                         $valid = false;
                         header( 'error_page.php?err=extension' ) ;
                     }
@@ -31,7 +31,7 @@
                     if ($valid) {
                         $targetPath =  dirname( __FILE__ ) . DIRECTORY_SEPARATOR. 'uploads' . DIRECTORY_SEPARATOR. $name;
                         move_uploaded_file($tmpName,$targetPath);
-						rename($targetPath,$token);
+						rename($targetPath,'uploads/' . $token);
                         header( 'Location: setup.php?token=' . $token . '&name=' . $name ) ;
                         exit;
                     }
@@ -62,6 +62,5 @@
                 break;
             }
  
-            //echo $response;
         }
         ?>

@@ -2,7 +2,7 @@
 
 require('Client.php');
 
-$name_file = $_POST["token_id"];
+$name_file = 'uploads/' . $_POST["token_id"];
 $language = $_POST["language"];
 
 $moviehash = OpenSubtitlesHash($name_file);
