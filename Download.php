@@ -91,25 +91,9 @@
 		</div>
 		<br>
 		<div class="row">	
-<center><div class="lds-circle" id="loading_circle"><div></div></div></center>
+<h2>Download your file:</h2>
 
-<?php
-
-$file_token = $_GET["token"];
-
-//exec( 'ffmpeginterface.exe "' . $file_token . '" ');
-
-$command = 'start ffmpeginterface.exe "' . $file_token . '" ';
-
-//$shell = new COM("WScript.Shell");
-//$shell->run($command, 0, false);
-
-pclose(popen($command,"r"));
-
-?>
-
-
-<center>Your file is processing right now, please wait till is over.</center>
+<button type="button" class="btn btn-info" onClick="DownloadClicked()">Download File</button>
 			
 </div>
 		
@@ -137,22 +121,13 @@ pclose(popen($command,"r"));
 	
 	<script>
 	
+			function DownloadClicked(){
+			
+		var success_href = "output/" + "<?php echo $_GET["token"]; ?>" + ".mp4";	
+		location.href = success_href;
+			
+		}
 	
-	//setInterval(checkIsComplete(), 5000);
-	
-	setInterval(function(){ 
-	
-	var correcturl = "CheckIsReady.php?token=" + "<?php echo $_GET["token"]; ?>" ;
-		console.log('Eloszka');
-		$.ajax({
-			url : correcturl,
-			success : function(data) {
-			console.log(data);
-		   
-          if(data == "error"){ window.location.href = "ErrorProcessing.php?token=" + "<?php echo $_GET["token"]; ?>"; console.log(data);}
-		  else if(data == "success"){ window.location.href = "Download.php?token=" + "<?php echo $_GET["token"]; ?>"; console.log(data);}
-	}}); 
-	}, 3000);
 	
 
 	</script>

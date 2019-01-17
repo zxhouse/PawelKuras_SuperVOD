@@ -93,13 +93,15 @@
 		<div class="row">	
 <center><div class="lds-circle" id="loading_circle"><div></div></div></center>
 
+
+
 <?php
 
 $file_token = $_GET["token"];
 
 //exec( 'ffmpeginterface.exe "' . $file_token . '" ');
 
-$command = 'start ffmpeginterface.exe "' . $file_token . '" ';
+$command = 'start ffmpeginterfacePreview.exe "' . $file_token . '" ';
 
 //$shell = new COM("WScript.Shell");
 //$shell->run($command, 0, false);
@@ -137,9 +139,6 @@ pclose(popen($command,"r"));
 	
 	<script>
 	
-	
-	//setInterval(checkIsComplete(), 5000);
-	
 	setInterval(function(){ 
 	
 	var correcturl = "CheckIsReady.php?token=" + "<?php echo $_GET["token"]; ?>" ;
@@ -149,10 +148,11 @@ pclose(popen($command,"r"));
 			success : function(data) {
 			console.log(data);
 		   
-          if(data == "error"){ window.location.href = "ErrorProcessing.php?token=" + "<?php echo $_GET["token"]; ?>"; console.log(data);}
-		  else if(data == "success"){ window.location.href = "Download.php?token=" + "<?php echo $_GET["token"]; ?>"; console.log(data);}
+          if(data == "error"){ window.location.href = "ErrorProcessingPreview.php?token=" + "<?php echo $_GET["token"]; ?>"; console.log(data);}
+		  else if(data == "success"){ window.location.href = "preview.php?token=" + "<?php echo $_GET["token"]; ?>"; console.log(data);}
 	}}); 
 	}, 3000);
+	
 	
 
 	</script>

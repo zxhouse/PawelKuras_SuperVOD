@@ -100,6 +100,13 @@
 </center>
 			
 </div>
+
+<div class="row">
+
+<button type="button" class="btn btn-info" onClick="AddSubtitlesClicked()">Render file</button>
+<button type="button" class="btn btn-info" onClick="StartAgain()">Start again</button>
+
+</div>
 		
 			<div class="row">
 				<div class="col-md-12 col-lg-12 text-center">
@@ -132,22 +139,31 @@
 	
 	<script>
 	
-	
+			var name = "previews/" + "<?php echo $_GET["token"]; ?>" + ".mp4";
+			console.log(name);
 	
 	        const player = jwplayer('player').setup({
       		sources: [
-				{file: "uploads/be7c27fc71f1fab745ef82c631b716e2.mp4", label:"SD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;360p"},
-				{file: "uploads/be7c27fc71f1fab745ef82c631b716e2.mp4", label:"HQ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;480p"},
-				{file: "uploads/be7c27fc71f1fab745ef82c631b716e2.mp4", label:"HD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;720p"},
-				{file: "uploads/be7c27fc71f1fab745ef82c631b716e2.mp4", label:"FULL HD&nbsp;&nbsp;-&nbsp;&nbsp;1080p"},
-				{file: "uploads/be7c27fc71f1fab745ef82c631b716e2.mp4", label:"2K&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;1440p"},
-				{file: "uploads/be7c27fc71f1fab745ef82c631b716e2.mp4", label:"4K&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;2160p"},
+				{file: name, label:"Video"},
 					 ]
 				,
 			playbackRateControls: true,
-			qualityLabels: {"2500":"FULL HD&nbsp;&nbsp;-&nbsp;&nbsp;1080p","1000":"SD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;360p"}
         });
 
+		function AddSubtitlesClicked(){
+			
+		var success_href = "renderfile.php?token=" + "<?php echo $_GET["token"]; ?>";	
+		location.href = success_href;
+			
+		}
+		
+		function StartAgain(){
+			
+			location.href = "start.php"
+			
+		}
+		
+		
 	</script>
 
 </body>

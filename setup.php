@@ -308,71 +308,8 @@
 			</div>
 			
 			
-			
+
 			<br><br><br>
-			
-			<div class="row">
-				<div class="col-md-2 col-lg-2 text-center"></div>
-				<div class="col-md-8 col-lg-8 text-center">
-			
-					<div class="panel panel-default">
-						<div class="panel-body">
-					
-							<h4>Options</h4>
-							<br>
-							<div class="row">
-								<div class="col-md-4 col-lg-4 text-right">
-									Position of subtitles:
-								</div>
-								<div class="col-md-8 col-lg-8 text-left">
-									<select class="form-control" id="exampleFormControlSelect1">
-										<option>Above video</option>
-										<option>Under video</option>
-										<option>In center of video</option>
-									</select>
-								</div>
-					
-							</div>
-							<br>
-							<div class="row">
-								<div class="col-md-4 col-lg-4 text-right">
-									Charset:
-								</div>
-					
-								<div class="col-md-8 col-lg-8 text-left">
-									<select class="form-control" id="exampleFormControlSelect1">
-										<option>Unicode (UTF-8)</option>
-										<option>ISO 8859-1 (Central Europe</option>
-										<option>In center of video</option>
-									</select>
-								</div>
-					
-							</div>
-					
-							<br>
-							<div class="row">
-								<div class="col-md-4 col-lg-4 text-right">
-								Font:
-								</div>
-					
-								<div class="col-md-8 col-lg-8 text-left">
-									<select class="form-control" id="exampleFormControlSelect1">
-										<option>Arial</option>
-										<option>Tahoma</option>
-										<option>Times New Roman</option>
-									</select>
-								</div>
-					
-							</div>
-					
-						</div>
-					</div>
-			
-				</div>
-				<div class="col-md-2 col-lg-2 text-center"></div>
-			</div>
-			
-        
 		
 			<div class="row">
 				<div class="col-md-12 col-lg-12 text-center">
@@ -398,7 +335,7 @@
 				<h3><b>It looks like our server is quite busy now.</b></h3>
 				</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-info" >Try again</button>
+				<button type="button" class="btn btn-info" onClick="AddSubtitlesClicked()">Try again</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
@@ -418,7 +355,7 @@
 				
 				</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-info" >Try again</button>
+				<button type="button" class="btn btn-info" onClick="AddSubtitlesClicked()">Try again</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
@@ -622,6 +559,12 @@ console.log(myToken);
   // Other configuration
 }, '#pay-button');
 	
+	
+	function PreviewClicked(){
+		
+		var preview_href = "renderfile_preview.php?token=" + "<?php echo $_GET["token"]; ?>";
+		window.location.href = preview_href;
+	}
 	
 	
 	function AddSubtitlesClicked() {
